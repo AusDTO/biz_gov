@@ -1,46 +1,50 @@
 <html>
 <head>
-	
-<link rel='stylesheet' href='../../e98cbde0deb0ce0447204e5d87adca95.css'>
+	<meta name="format-detection" content="telephone=no">
+
+<link rel='stylesheet' href='../../e0bd7b8311cae5781f966426e3b0ee63.css'>
 <script src='../../5a09f2cb6ce01d7ffad1b30e3490ff4d.js'></script>
 <title>Home</title>
 	<script id="message-template" type="text/x-handlebars-template">
-	{{#messages}}
-	<a href="#" class="message {{#read}}read{{/read}}">
-		<div class="icons {{#hasAttachment attachments}}{{/hasAttachment}}"></div>
+	{{#each .}}
+	<a href="message.html?i={{@index}}" class="message {{#read}}read{{/read}}">
+		<div class="icons {{#if attachments}}icon-attachment{{/if}}"></div>
 		<div class="date">{{ date }}</div>
 		<div class="from">{{ from }}</div>
 		<div class="subject">{{ subject }}</div>
-		<div class="tags">
+		<!--
+		<div class="tag-list">
 			{{#tags}}
 			<span>{{ . }}</span>
 			{{/tags}}
 		</div>
+		-->
 	</a>
-	{{/messages}}
+	{{/each}}
 </script>
 <script>
 
-var messages = { "messages": [
+var messages = [
 	{
 		"date": "Tue 5 May",
-		"from": "ASIC",
-		"subject": "Successful renewal of business: Jane's Bakery",
+		"from": "Australian Securities and Investments Commision",
+		"subject": "Successful renewal of business name - Jane's Bakery",
 		"attachments": [ "Receipt.pdf" ],
 		"read": false,
-		"tags": [ "ASIC", "Receipt"	]
+		"tags": [ "ASIC", "Receipt"	],
+		"body": ""
 	},
 	{
 		"date": "Mon 4 May",
-		"from": "ATO",
-		"subject": "Your application",
+		"from": "Australian Taxation Office",
+		"subject": "RE: Your application",
 		"attachments": ["Form.pdf", "Info.pdf"],
 		"read": false,
 		"tags": [ "ATO", "Tax", "Form" ]
 	},
 	{
 		"date": "Thu 30 Apr",
-		"from": "ASIC",
+		"from": "Australian Securities and Investments Commision",
 		"subject": "ASIC Connect account activation",
 		"attachments": [],
 		"read": true,
@@ -48,7 +52,7 @@ var messages = { "messages": [
 	},
 	{
 		"date": "Thu 30 Apr",
-		"from": "ASIC",
+		"from": "Australian Securities and Investments Commision",
 		"subject": "Confirm your email address",
 		"attachments": [],
 		"read": true,
@@ -56,34 +60,39 @@ var messages = { "messages": [
 	},
 	{
 		"date": "Mon 27 Apr",
-		"from": "ATO",
+		"from": "Australian Taxation Office",
 		"subject": "ATO Small Business News",
 		"attachments": [],
 		"read": false,
 		"tags": [ "ATO", "Tax", "News" ]
 	}
-]};
+];
 
-	function renderMessages(target, maxCount, unreadOnly, preview) {
-		Handlebars.registerHelper('hasAttachment', function(items, options) {
-			return (items.length > 0) ? "icon-attachment" : "";
-		});
+	function renderMessages(target, maxCount, unreadOnly, preview, from) {
 
 		var target = $(target);
 		if (preview)
 			target.addClass('message-list-preview');
 
-		var display_messages = { "messages": [] };
+		var display_messages = messages;
+
+		if (from)
+		{
+			display_messages = $.grep(display_messages, function(m) {
+				return m.from == from;
+			});
+		}
 
 		if (unreadOnly)
 		{
-			display_messages.messages = $.grep(messages.messages, function(m) {
+			display_messages = $.grep(display_messages, function(m) {
 				return !m.read;
-			});			
+			});
 		}
-		else
+
+		if (maxCount > 0)
 		{
-			display_messages.messages = messages.messages;
+			display_messages = display_messages.slice(0, maxCount);	
 		}
 
 		var source = $("#message-template").html();
@@ -94,15 +103,19 @@ var messages = { "messages": [
 	<script>
 
 	$(document).ready(function() {
-	  renderMessages("#messages", 10, true, true);
+	  renderMessages("#messages", 3, false, true);
 	});
 
 	</script>
 </head>
 <body>
 	<div id="account-bar">
-	<div class="container">
-		<a href="/" id="logo">business.gov.au</a>
+	<div class="container-fluid">
+		<a class='current-parent current' id="logo" href="index.html">business.gov.au</a>
+		<div id="user" class="pull-right">
+			<input type="text"></input>
+			<a href="#">Jane Citizen</a>
+		</div>
 	</div>
 </div>
 	<div id="add-biz-dialog" class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -130,7 +143,7 @@ var messages = { "messages": [
 </div>
 
 <header>
-  <div class="container">
+  <div class="container-fluid">
     
     <div id="search">
       <div>Find government services and information</div>
@@ -144,7 +157,7 @@ var messages = { "messages": [
 
     <nav>
       <ul>
-        <li><a href="../../index.html" class="home">&nbsp;<span>&nbsp;</span></a></li>
+        <!--<li><a href="<-- @path index.html ->" class="home">&nbsp;<span>&nbsp;</span></a></li></a>-->
         <li class='current-parent current'><a class='current-parent current' href="index.html">Jane's Bakery<span>ABN 66 123 456 789</span></a></li>
         <!-- <li><a href="">Jane's Catering Services<span>ABN 66 987 654 321</span></a></li> -->
         <li><a href="#" class="add" data-toggle="modal" data-target="#add-biz-dialog"></a></li>
@@ -156,24 +169,24 @@ var messages = { "messages": [
 </header>
 
 	<section id="main">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-sm-3">
 					<ul id="sub-nav">
 	<li class='current-parent current'><a class='current-parent current' href="index.html">Home</a></li>
-	<li><a href="messages.html">Messages<span>2</span></a></li>
+	<li><a href="messages.html">Inbox<span>3</span></a></li>
 	<li><a href="services.html">Services</a></li>
-	<li><a href="representatives.html">Representatives<span>1</span></a></li>
+	<li><a href="iwantto.html">I want to...</a></li>
+	<li><a href="representatives.html">Authorise<span>3</span></a></li>
 	<li><a href="details.html">Business details</a></li>
-	<li><a href="settings.html">Notification settings</a></li>
+	<li><a href="settings.html">Notifications and alerts</a></li>
 	<li class="sep"></li>
 	<li class="icon-cloud"><a href="vault.html">Vault</a></li>
 </ul>
-
 				</div>
-				<div class="col-md-9">
+				<div class="col-sm-9">
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-sm-12">
 							<h1 class="no-margin">Jane's Bakery</h1>
 							<div class="sub-head">
 								ABN 66 123 456 789 <span>&ndash;</span>
@@ -185,18 +198,24 @@ var messages = { "messages": [
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-sm-6">
 							<h2>Frequently used services</h2>
 							<ul class="link-list">
-	<li><a href="http://www.ato.gov.au/">Submit your BAS</a></li>
-	<li><a href="#">Renew ACT car registration</a></li>
-	<li><a href="#">Income tax calculator</a></li>
+	<li><a href="#">Lodge my BAS</a></li>
+	<li><a href="#">Update my details</a></li>
+	<li><a href="#">Renew my business name</a></li>
+	<li><a href="#">Lodge my (business) tax return</a></li>
+	<li><a href="#">Manage my workcover and insurance</a></li>
+	<li><a href="#">Start a new employee/contractor</a></li>
+	<li><a href="#">Apply for a grant</a></li>
+	<li><a href="#">Apply for a license or permit</a></li>
+	<li><a href="#">Manage my employee's super</a></li>
 </ul>
 							<div class="section-box">
 								More <a href="services.html">services</a>
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-sm-6">
 							<h2>Recent messages</h2>							
 							<div id="messages"></div>
 							<div class="section-box">
@@ -205,12 +224,12 @@ var messages = { "messages": [
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-sm-12">
 							<h2>News</h2>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-sm-6">
 							<div class="news-story">
 	<a href="#">The future of Australia’s tax system</a>
 	<p>The tax discussion paper has been released. Let’s start a national conversation about tax reform. Your feedback could help improve Australia’s tax system.</p>
@@ -226,7 +245,7 @@ var messages = { "messages": [
 	<p>Younger entrepreneurs can start a business as a minor with some proper planning and information!</p>
 </div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-sm-6">
 							<div class="news-story">
 								<a href="#">Protect your business from cybercrime</a>
 								<p>The Australian Cybercrime Online Reporting Network (ACORN) is an Australia-wide initiative that allows the public to securely report cybercrime.</p>
@@ -239,7 +258,7 @@ var messages = { "messages": [
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-sm-12 col-md-12">
 							<div class="section-footer">
 								More <a href="#">news stories</a>
 							</div>
@@ -251,10 +270,10 @@ var messages = { "messages": [
 	</section>
 
 	<footer>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
-				<img src="/assets/images/aus-coat-of-arms.png" class="pull-right" />	
+			<div class="col-sm-12">
+				<img src="../../assets/images/aus-coat-of-arms.png" class="pull-right" />	
 			</div>
 		</div>
 

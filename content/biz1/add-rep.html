@@ -1,0 +1,80 @@
+<!-- $title Add authorised representative -->
+
+<html>
+<head>
+	<!-- @include _html_head -->	
+</head>
+<body>
+	<!-- @include _account_bar -->
+	<!-- @include _header -->
+
+	<section id="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<!-- @include _sidebar -->
+				</div>
+				<div class="col-sm-9">
+					<a href="<!-- @path ./representatives.html -->" class="back"><span class="glyphicon glyphicon-chevron-left" style="padding-right: 5px;"></span>Representatives</a>
+					<h1 class="no-margin">Add authorised representative</h1>
+
+					<div role="tabpanel">
+					
+					  <ul class="nav nav-tabs" role="tablist" style="margin: 40px 0 30px 0;">
+					    <li role="presentation" class="active"><a href="#individual" role="tab" data-toggle="tab">Add a person</a></li>
+					    <li role="presentation"><a href="#business" role="tab" data-toggle="tab">Add a business</a></li>
+					  </ul>
+					  <div class="tab-content">
+					    <div role="tabpanel" class="tab-pane active" id="individual">
+							<p>[Individual by myGov ID, email, mobile phone, etc.]</p>
+							<p>[Agency / Service Authorisations]</p>
+							<p>[Duration]</p>
+							<!--
+							<form>
+								<h2>Representative</h2>
+								<div class="form-group" style="width: 500px">
+									<label>Representative's email address</label>
+									<input type="email" class="form-control" placeholder="name@example.com.au">
+									<span class="help-block">We'll send an invitation code to this email address.<br />
+										<a href="#">Learn more about invitiation codes</a>.
+									</span>
+								</div>
+							  
+							  	<h2 style="margin-top: 40px;">Authorisations</h2>
+								<div class="form-group">
+									<input type="search" class="filter" placeholder="Search" style="width: 250px;"><br />
+									<select size="5" class="filter" style="width: 250px;">
+										<option>ATO</option>
+										<option>ASIC</option>
+									</select>
+								</div>
+								
+								<h2 style="margin-top: 40px;">Duration</h2>
+							</form>
+							-->
+						</div>
+					    <div role="tabpanel" class="tab-pane" id="business">
+							<p>[Business ABN lookup]</p>
+							<p>[Agency / Service Authorisations]</p>
+							<p>[Duration]</p>
+						</div>
+					  </div>
+						
+					</div>
+
+					<div style="margin-top: 60px;">
+						<a href="<!-- @path ./representatives.html -->" class="btn btn-primary">Send invitation</a> 
+						<span class="or-cancel">
+							<span>or</span>
+							<a href="<!-- @path ./representatives.html -->">Cancel</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- @include _footer -->
+
+</body>
+</html>

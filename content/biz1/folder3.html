@@ -1,0 +1,45 @@
+<!-- $title Inbox -->
+
+<html>
+<head>
+	<!-- @include html_head -->	
+	<!-- @include messages_data -->
+	<script>
+
+	$(document).ready(function() {
+		updateMessages(false);	  
+	});
+
+	function updateMessages(unreadyOnly)
+	{
+		renderMessages("#messages", 10, unreadyOnly, false, 'Super');	
+	}
+
+	</script>
+</head>
+<body>
+	<!-- @include account_bar -->
+	<!-- @include header -->
+
+	<section id="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<!-- @include _sidebar_folders -->
+				</div>
+				<div class="col-sm-9">
+					<div class="row">
+						<div class="col-sm-12">
+							<!-- @include _messages_toolbar -->
+							<div id="messages"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- @include _footer -->
+
+</body>
+</html>

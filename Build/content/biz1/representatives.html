@@ -1,14 +1,19 @@
 <html>
 <head>
-	
-<link rel='stylesheet' href='../../e98cbde0deb0ce0447204e5d87adca95.css'>
+	<meta name="format-detection" content="telephone=no">
+
+<link rel='stylesheet' href='../../e0bd7b8311cae5781f966426e3b0ee63.css'>
 <script src='../../5a09f2cb6ce01d7ffad1b30e3490ff4d.js'></script>
-<title>Representatives</title>	
+<title>Authorise</title>	
 </head>
 <body>
 	<div id="account-bar">
-	<div class="container">
-		<a href="/" id="logo">business.gov.au</a>
+	<div class="container-fluid">
+		<a class='current-parent' id="logo" href="index.html">business.gov.au</a>
+		<div id="user" class="pull-right">
+			<input type="text"></input>
+			<a href="#">Jane Citizen</a>
+		</div>
 	</div>
 </div>
 	<div id="add-biz-dialog" class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -36,7 +41,7 @@
 </div>
 
 <header>
-  <div class="container">
+  <div class="container-fluid">
     
     <div id="search">
       <div>Find government services and information</div>
@@ -50,7 +55,7 @@
 
     <nav>
       <ul>
-        <li><a href="../../index.html" class="home">&nbsp;<span>&nbsp;</span></a></li>
+        <!--<li><a href="<-- @path index.html ->" class="home">&nbsp;<span>&nbsp;</span></a></li></a>-->
         <li class='current-parent'><a class='current-parent' href="index.html">Jane's Bakery<span>ABN 66 123 456 789</span></a></li>
         <!-- <li><a href="">Jane's Catering Services<span>ABN 66 987 654 321</span></a></li> -->
         <li><a href="#" class="add" data-toggle="modal" data-target="#add-biz-dialog"></a></li>
@@ -62,34 +67,138 @@
 </header>
 
 	<section id="main">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-sm-3">
 					<ul id="sub-nav">
 	<li class='current-parent'><a class='current-parent' href="index.html">Home</a></li>
-	<li><a href="messages.html">Messages<span>2</span></a></li>
+	<li><a href="messages.html">Inbox<span>3</span></a></li>
 	<li><a href="services.html">Services</a></li>
-	<li class='current'><a class='current' href="representatives.html">Representatives<span>1</span></a></li>
+	<li><a href="iwantto.html">I want to...</a></li>
+	<li class='current'><a class='current' href="representatives.html">Authorise<span>3</span></a></li>
 	<li><a href="details.html">Business details</a></li>
-	<li><a href="settings.html">Notification settings</a></li>
+	<li><a href="settings.html">Notifications and alerts</a></li>
 	<li class="sep"></li>
 	<li class="icon-cloud"><a href="vault.html">Vault</a></li>
 </ul>
-
 				</div>
-				<div class="col-md-9">
-					<h1 class="no-margin">Representatives</h1>
-					<div class="sub-head">Jane's Bakery ABN 66 123 456 789</div>
+				<div class="col-sm-9">
+					<h1>Authorise</h1>
+					
+					<map name="map">
+						<area shape="rect" alt="" title="" coords="30,27,259,114" href="ram8.html" target="" />
+						<area shape="rect" alt="" title="" coords="270,26,498,110" href="ram2.html" target="" />
+						<area shape="rect" alt="" title="" coords="514,28,740,110" href="ram3.html" target="" />
+						<area shape="rect" alt="" title="" coords="26,126,258,212" href="ram4.html" target="" />
+						<area shape="rect" alt="" title="" coords="26,332,150,458" href="ram5.html" target="" />
+						<area shape="rect" alt="" title="" coords="172,334,292,458" href="ram6.html" target="" />
+						<area shape="rect" alt="" title="" coords="318,336,436,460" href="ram7.html" target="" />
+					</map>
+					
+					<img usemap="#map" src="../../assets/images/RAM1.png" />
+						
+					<!--
+					<div class="sub-head">	
+					<p>Representatives are people and businesses that you allow to act on your behalf.<br />
+					<a href="#">Learn more about representatives</a>.</p></div>
+					
+					<table class="table" style="margin: 30px 0;">
+						<thead>
+							<tr>
+								<th style="width: 33%">Representative</th>
+								<th colspan="3" style="width: 66%">Authorisations</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width: 33%">
+									<div style="font-weight: 600">A&amp;B Accounting</div>
+									<div class="light-text">ABN 22 123 456 789</div>
+									<div style="margin: 10px 0;"><a href="<!-- @path ./manage-rep.html ->">Manage authorisations</a></div>
+								</td>
+								<td style="width: 33%">ATO - Business Activity Statements</td>
+								<td style="width: 33%">
+									<ul class="permissions-list">
+										<li>View</li>
+										<li>Prepare</li>
+										<li>Lodge</li>
+										<li>Update</li>	
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="3">
+									<div style="font-weight: 600">Mr Peter Citizen</div>
+									<div class="light-text">myGov User ID XR123456</div>
+									<div style="margin: 10px 0;"><a href="#">Manage authorisations</a></div>
+								</td>
+								<td>ATO - Business Activity Statements</td>
+								<td>
+									<ul class="permissions-list">
+										<li>View</li>
+										<li>Prepare</li>
+										<li>Lodge</li>
+										<li>Update</li>	
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>ATO - Super</td>
+								<td>
+									<ul class="permissions-list">
+										<li>View</li>
+										<li>Lodge transfer</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Centerlink - Family Tax Benefit</td>
+								<td>
+									<ul class="permissions-list">
+										<li>View</li>
+										<li>Update</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<a href="<!-- @path ./add-rep.html ->" class="btn btn-primary btn-lg">Add representative</a>
+						
+					<h2 style="margin-top: 60px; border: none;">Pending invitations</h2>
+					<table class="table">
+						<tr>
+							<td rowspan="3" style="width: 33%">
+								<div style="font-weight: 600">Ms Mary Smith</div>
+								<div class="light-text">myGov User ID CX98765</div>
+								<div>Sent Mon 15 May 2015 at 9:36 AM</div>
+								<div style="margin: 15px 0;"> 
+									<a href="#" class="btn btn-default">Resend invitation</a>
+									<a href="#" class="btn btn-warning">Cancel</a>
+								</div>
+							</td>
+							<td style="width: 33%">ATO - Business Activity Statements</td>
+							<td style="width: 33%">
+								<ul class="permissions-list">
+									<li>View</li>
+									<li>Prepare</li>
+									<li>Lodge</li>
+									<li>Update</li>	
+								</ul>
+							</td>
+						</tr>
+					</table>
+					-->
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<footer>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
-				<img src="/assets/images/aus-coat-of-arms.png" class="pull-right" />	
+			<div class="col-sm-12">
+				<img src="../../assets/images/aus-coat-of-arms.png" class="pull-right" />	
 			</div>
 		</div>
 

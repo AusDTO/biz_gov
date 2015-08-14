@@ -1,40 +1,43 @@
 <script id="message-template" type="text/x-handlebars-template">
-	{{#messages}}
-	<a href="#" class="message {{#read}}read{{/read}}">
-		<div class="icons {{#hasAttachment attachments}}{{/hasAttachment}}"></div>
+	{{#each .}}
+	<a href="<!-- @path content/biz1/message.html -->?i={{@index}}" class="message {{#read}}read{{/read}}">
+		<div class="icons {{#if attachments}}icon-attachment{{/if}}"></div>
 		<div class="date">{{ date }}</div>
 		<div class="from">{{ from }}</div>
 		<div class="subject">{{ subject }}</div>
-		<div class="tags">
+		<!--
+		<div class="tag-list">
 			{{#tags}}
 			<span>{{ . }}</span>
 			{{/tags}}
 		</div>
+		-->
 	</a>
-	{{/messages}}
+	{{/each}}
 </script>
 <script>
 
-var messages = { "messages": [
+var messages = [
 	{
 		"date": "Tue 5 May",
-		"from": "ASIC",
-		"subject": "Successful renewal of business: Jane's Bakery",
+		"from": "Australian Securities and Investments Commision",
+		"subject": "Successful renewal of business name - Jane's Bakery",
 		"attachments": [ "Receipt.pdf" ],
 		"read": false,
-		"tags": [ "ASIC", "Receipt"	]
+		"tags": [ "ASIC", "Receipt"	],
+		"body": ""
 	},
 	{
 		"date": "Mon 4 May",
-		"from": "ATO",
-		"subject": "Your application",
+		"from": "Australian Taxation Office",
+		"subject": "RE: Your application",
 		"attachments": ["Form.pdf", "Info.pdf"],
 		"read": false,
 		"tags": [ "ATO", "Tax", "Form" ]
 	},
 	{
 		"date": "Thu 30 Apr",
-		"from": "ASIC",
+		"from": "Australian Securities and Investments Commision",
 		"subject": "ASIC Connect account activation",
 		"attachments": [],
 		"read": true,
@@ -42,7 +45,7 @@ var messages = { "messages": [
 	},
 	{
 		"date": "Thu 30 Apr",
-		"from": "ASIC",
+		"from": "Australian Securities and Investments Commision",
 		"subject": "Confirm your email address",
 		"attachments": [],
 		"read": true,
@@ -50,34 +53,39 @@ var messages = { "messages": [
 	},
 	{
 		"date": "Mon 27 Apr",
-		"from": "ATO",
+		"from": "Australian Taxation Office",
 		"subject": "ATO Small Business News",
 		"attachments": [],
 		"read": false,
 		"tags": [ "ATO", "Tax", "News" ]
 	}
-]};
+];
 
-	function renderMessages(target, maxCount, unreadOnly, preview) {
-		Handlebars.registerHelper('hasAttachment', function(items, options) {
-			return (items.length > 0) ? "icon-attachment" : "";
-		});
+	function renderMessages(target, maxCount, unreadOnly, preview, from) {
 
 		var target = $(target);
 		if (preview)
 			target.addClass('message-list-preview');
 
-		var display_messages = { "messages": [] };
+		var display_messages = messages;
+
+		if (from)
+		{
+			display_messages = $.grep(display_messages, function(m) {
+				return m.from == from;
+			});
+		}
 
 		if (unreadOnly)
 		{
-			display_messages.messages = $.grep(messages.messages, function(m) {
+			display_messages = $.grep(display_messages, function(m) {
 				return !m.read;
-			});			
+			});
 		}
-		else
+
+		if (maxCount > 0)
 		{
-			display_messages.messages = messages.messages;
+			display_messages = display_messages.slice(0, maxCount);	
 		}
 
 		var source = $("#message-template").html();
