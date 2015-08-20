@@ -1,5 +1,5 @@
 
-# BizGiv Prototype
+# BizGov Prototype
 
 This prototype explores design concepts for:
 
